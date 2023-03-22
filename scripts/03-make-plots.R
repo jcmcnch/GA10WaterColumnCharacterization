@@ -34,8 +34,8 @@ salinity.bottle <- d_bottle[["CTDSAL"]]
 temperature.bottle <- d_bottle[["CTDTMP..deg.C."]]
 pressure.bottle <- d_bottle[["PRESSURE..dbar."]]
 bottle.data <- as.ctd(salinity.bottle, temperature.bottle, pressure.bottle)
-dissolvedNO3=d_bottle[["NITRATE_D_CONC_BOTTLE..umol.kg."]]
-bottle.data <- oceSetData(bottle.data, 'Dissolved Nitrate (µm/kg)', value=dissolvedNO3)
+dissolvedNO3=d_bottle[["NO2.NO3_D_CONC_BOTTLE..umol.kg."]]
+bottle.data <- oceSetData(bottle.data, 'Total Nitrate + Nitrite (µm/kg)', value=dissolvedNO3)
 
 #make plot
 pdf(args[3], width=9,height=7)
@@ -56,7 +56,7 @@ for (criterion in c(0.1, 0.5)) {
 plotProfile(ctd, xtype="Chlorophyll (mg/m^3)", ylim=c(300, 0), col="darkgreen", keepNA=TRUE)
 plotProfile(ctd, xtype="CTD Oxygen (µM)", ylim=c(300, 0), col="darkblue", keepNA=TRUE)
 plotProfile(ctd, xtype="Beam Attenuation (1/m)", ylim=c(300, 0), col="red", keepNA=TRUE)
-plotProfile(bottle.data, xtype="Dissolved Nitrate (µm/kg)", ylim=c(300, 0), col="orange", type="b", keepNA=TRUE)
+plotProfile(bottle.data, xtype="Total Nitrate + Nitrite (µm/kg)", ylim=c(300, 0), col="orange", type="b", keepNA=TRUE)
 
 #source = https://stackoverflow.com/questions/7367138/text-wrap-for-plot-titles
 wrap_strings <- function(vector_of_strings,width){sapply(vector_of_strings,FUN=function(x){paste(strwrap(x,width=width), collapse="\n")})}
